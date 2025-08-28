@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analogues of Aristotelian Rhetoric—Ethos, Logos, and Pathos in the Zhanguo Ce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+KR:wght@400;700&family=Noto+Serif+GR:wght@400;700&family=Cormorant+Garamond:wght@400,700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        :root {
+            --font-main: 'Inter', 'Segoe UI', Candara, 'Bitstream Vera Sans', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif;
+            --font-serif: 'Cormorant Garamond', 'Noto Serif GR', 'Noto Serif SC', serif;
+            --color-primary: #2c3e50; /* Classic dark blue */
+            --color-secondary: #34495e; /* Slightly lighter blue */
+            --color-text: #333;
+            --color-light-bg: #fdfdfd;
+        }
+        body { 
+            font-family: var(--font-serif); 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--color-light-bg); 
+            overflow: hidden; 
+        }
+        .slide { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            background-color: white; 
+            transition: transform 0.6s ease-in-out; 
+            transform: translateX(100%); 
+            padding: 2rem 4rem; 
+            box-sizing: border-box; 
+            overflow-y: auto;
+        }
+        .slide:first-child { transform: translateX(0); }
+        .slide.active { transform: translateX(0); z-index: 1; }
+        .slide.prev { transform: translateX(-100%); z-index: 0; }
+        h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--color-primary); margin-bottom: 0.2em; }
+        h2 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2rem, 5vw, 3rem); color: var(--color-secondary); border-bottom: 2px solid var(--color-secondary); padding-bottom: 10px; margin-top: 0; width: 80%; max-width: 900px; }
+        h3, h4 { font-family: var(--font-main); color: var(--color-text); font-size: clamp(1.2rem, 3vw, 1.8rem); }
+        p, li { font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.7; color: var(--color-text); max-width: 900px; }
+        .lead { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color: white; }
+        .lead h1, .lead h3, .lead h4 { color: white; }
+        .invert { background-color: #222; color: white; }
+        .invert h2, .invert p, .invert a { color: white; }
+        .two-columns { display: grid; grid-template-columns: 1fr; gap: 2rem; width: 90%; text-align: left; align-items: center; }
+        @media (min-width: 768px) {
+            .two-columns { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+        .controls { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .controls button { font-size: 24px; padding: 10px 20px; margin: 0 5px; cursor: pointer; background-color: var(--color-primary); color: white; border: none; border-radius: 3px; transition: background-color 0.3s; }
+        .controls button:hover { background-color: var(--color-secondary); }
+        .slide-counter { position: fixed; bottom: 20px; left: 20px; z-index: 1000; font-family: var(--font-main); font-size: 1.2em; background-color: rgba(0,0,0,0.5); color: white; padding: 5px 10px; border-radius: 3px; }
+        a { color: #0077cc; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        .lang-greek { font-family: 'Noto Serif GR', serif; font-size: 1.2em; }
+        .lang-chinese { font-family: 'Noto Serif SC', serif; font-size: 1.3em; }
+
+        /* Gemini API Features Styles */
+        .gemini-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .gemini-controls button {
+            background-color: #4a4a4a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .gemini-controls button:hover {
+            background-color: #6a6a6a;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 0.3s, opacity 0.3s;
+        }
+        .modal-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s, opacity 0.3s;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: left;
+            position: relative;
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            font-family: var(--font-serif);
+            color: var(--color-primary);
+        }
+        .modal-content #gemini-response {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        #gemini-question-area { display: flex; flex-direction: column; gap: 10px; }
+        #gemini-question-input { width: 100%; padding: 10px; font-family: var(--font-main); font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--color-secondary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active lead" data-content="Title Slide: Analogues of Aristotelian Rhetoric—Ethos, Logos, and Pathos in the Zhanguo Ce. By Javier Caramés Sánchez, Independent Online Lecturer / NTU.">
+        <h1>Analogues of Aristotelian Rhetoric—<br>Ethos, Logos, and Pathos in the <em>Zhanguo Ce</em></h1>
+        <h4>Javier Caramés Sánchez<br>Independent Online Lecturer / NTU</h4>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 2: Purpose -->
+    <div class="slide" data-content="Central Inquiry: This presentation investigates the common cognitive principles underlying the genesis of rhetorical theory in Classical Greece and Warring States China.">
+        <h2>Central Inquiry</h2>
+        <p>This presentation investigates the common cognitive principles underlying the genesis of rhetorical theory in Classical Greece and Warring States China.</p>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 3: Methodology -->
+    <div class="slide" data-content="Methodological Framework: The approach uses Comparative Philology for textual analysis, considers the Historical Context linking text to its era, and applies Cognitive Science, specifically the System 1 (fast, intuitive) and System 2 (slow, deliberative) framework.">
+        <h2>Methodological Framework</h2>
+        <ul style="list-style: none; padding: 0; text-align: center;">
+            <li style="margin-bottom: 1rem;"><strong>Comparative Philology:</strong> Textual analysis of primary sources.</li>
+            <li style="margin-bottom: 1rem;"><strong>Historical Context:</strong> Linking text to its era.</li>
+            <li><strong>Cognitive Science:</strong> A common explanatory framework (System 1 & 2).</li>
+        </ul>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 4: Aristotle -->
+    <div class="slide" data-content="The Greek Foundation: Persuasion from Plausibility (Endoxa). Primary Text I from Aristotle's Rhetoric: 'Ἔστι δὲ ῥητορικὴ δύναμις περὶ ἕκαστον τοῦ θεωρῆσαι τὸ ἐνδεχόμενον πιθανόν.' Endoxa are defined as commonly held beliefs and communal values, which serve as the foundational premise of all effective argumentation.">
+        <h2>The Greek Foundation: Persuasion from Plausibility (Endoxa)</h2>
+        <div class="two-columns">
+            <div>
+                <p><strong>Primary Text I: Aristotle, <em>Rhetoric</em></strong></p>
+                <p class="lang-greek">"Ἔστι δὲ ῥητορικὴ δύναμις περὶ ἕκαστον τοῦ θεωρῆσαι τὸ ἐνδεχόμενον πιθανόν."</p>
+                <p>
+                    <a href="https://magisterha.github.io/RhetoricaI-1/" target="_blank">See Text A ↗</a><br>
+                    <a href="https://magisterha.github.io/Retorica1segundotexto290825/" target="_blank">See Text B ↗</a>
+                </p>
+            </div>
+            <div>
+                <h3>Endoxa</h3>
+                <p>Commonly held beliefs and communal values. The foundational premise of all effective argumentation.</p>
+            </div>
+        </div>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 5: China -->
+    <div class="slide" data-content="The Chinese Context: Persuasion Amidst Crisis. Primary Text II from Liu Xiang's Zhanguo Ce: '戰國之時，君德淺薄，為之謀策者，不得不因勢而為資，據時而為畫。' The context is the decline of the Ritual system (禮), which necessitated a new praxis. Language is consequently employed as an instrument to secure practical advantage (實).">
+        <h2>The Chinese Context: Persuasion Amidst Crisis</h2>
+        <div class="two-columns">
+            <div>
+                <p><strong>Primary Text II: 劉向, <em>戰國策</em></strong></p>
+                <p class="lang-chinese">"戰國之時，君德淺薄，為之謀策者，不得不因勢而為資，據時而為畫。"</p>
+                <p><a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">See full text and translation ↗</a></p>
+            </div>
+            <div>
+                <h3>Context</h3>
+                <p>The decline of the Ritual system (禮) necessitated a new praxis. Language is consequently employed as an instrument to secure practical advantage (實).</p>
+            </div>
+        </div>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+    
+    <!-- Slide 6: Cognition -->
+    <div class="slide" data-content="A Cognitive Framework: This slide presents the dual-process theory of thought. System 1 is fast, intuitive, emotional, and automatic, corresponding to Pathos and the Chinese concept of 情 (qíng). System 2 is slow, deliberative, logical, and effortful, corresponding to Logos and the Chinese concept of 權 (quán).">
+        <h2>A Cognitive Framework</h2>
+        <div class="two-columns">
+            <div style="background: #f4f6f7; padding: 1.5rem; border-radius: 8px; border-left: 5px solid var(--color-secondary);">
+                <h3>System 1 (Fast)</h3>
+                <p>Intuitive, Emotional, Automatic<br>➡️ Pathos, 情 (qíng)</p>
+            </div>
+            <div style="background: #f4f6f7; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #27ae60;">
+                <h3>System 2 (Slow)</h3>
+                <p>Deliberative, Logical, Effortful<br>➡️ Logos, 權 (quán)</p>
+            </div>
+        </div>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 7: Emotion -->
+    <div class="slide" data-content="Emotion as the Catalyst for Judgment. Aristotle (Text III): Pathos (emotion) determines krisis (judgment). 鬼谷子 (Guǐgǔzi) (Text IV): The skilled orator must investigate 情 (qíng) and 權 (quán).">
+        <h2>Emotion as the Catalyst for Judgment</h2>
+        <p><strong>Aristotle (Text III):</strong> <em>Pathos</em> (emotion) determines <em>krisis</em> (judgment). <a href="https://magisterha.github.io/Pathosykriseis/" target="_blank">↗</a></p>
+        <p><strong>鬼谷子 (Guǐgǔzi) (Text IV):</strong> The skilled orator must investigate 情 (<em>qíng</em>) and 權 (<em>quán</em>). <a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">↗</a></p>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Other slides would follow the same pattern -->
+
+    <!-- Slide 12: Conclusion -->
+    <div class="slide invert" data-content="Conclusion: Endoxa as Catalysts for Pathos. The rhetorical process is summarized as follows: The Orator identifies an Endoxon or communal value (like Honor or Benefit), then employs language to evoke a specific Emotion (Pathos or 情), which in turn compels a Judgment or decision (Krisis).">
+        <h2>Conclusion: Endoxa as Catalysts for Pathos</h2>
+        <p style="font-size: clamp(1.2rem, 3vw, 1.8rem); line-height: 1.7;">
+            The Orator ➡️ Identifies an <strong>Endoxon / Value</strong> (e.g., Honor, Benefit) ➡️ Employs language to evoke an <strong>Emotion</strong> (Pathos / 情) ➡️ Compels a <strong>Judgment</strong> (Krisis)
+        </p>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 13: Thank You -->
+    <div class="slide lead" data-content="Thank you slide. Questions and Discussion. Contact: your.email@domain.com. Link to repository.">
+        <h1>Thank You</h1>
+        <h3>Questions & Discussion</h3>
+        <h4>📧 your.email@domain.com</h4>
+        <h4><a href="https://github.com/your-username/presentation-repo" target="_blank" style="color:white;" onclick="event.preventDefault(); alert('This link will work in the final repository.');">github.com/your-username/presentation-repo</a></h4>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Controls and counter -->
+    <div class="controls">
+        <button id="prevBtn">◄</button>
+        <button id="nextBtn">►</button>
+    </div>
+    <div id="slideCounter" class="slide-counter"></div>
+
+    <!-- Gemini Modal -->
+    <div id="gemini-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 id="gemini-modal-title">Gemini Assistant</h3>
+            <div id="gemini-question-area" style="display: none;">
+                <p>Ask a question about this slide:</p>
+                <textarea id="gemini-question-input" rows="3"></textarea>
+                <button id="gemini-submit-btn">Submit Question</button>
+            </div>
+            <div id="gemini-response-area">
+                 <div id="gemini-response"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script for slide navigation
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevBtn.click();
+            }
+        });
+
+        updateSlides();
+
+        // Gemini API Functionality
+        const modal = document.getElementById('gemini-modal');
+        const modalTitle = document.getElementById('gemini-modal-title');
+        const responseDiv = document.getElementById('gemini-response');
+        const questionArea = document.getElementById('gemini-question-area');
+        const questionInput = document.getElementById('gemini-question-input');
+        const submitQuestionBtn = document.getElementById('gemini-submit-btn');
+
+        const apiKey = ""; // API key is handled by the environment
+
+        async function callGeminiAPI(prompt) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            responseDiv.innerHTML = '<div class="loader"></div>';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (text) {
+                    responseDiv.innerText = text;
+                } else {
+                    responseDiv.innerText = "Sorry, I couldn't get a response. The response from the model was empty.";
+                }
+
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                responseDiv.innerText = "An error occurred while contacting the AI assistant. Please check the console for details.";
+            }
+        }
+
+        function openModal() {
+            modal.classList.add('visible');
+        }
+
+        function closeModal() {
+            modal.classList.remove('visible');
+            responseDiv.innerHTML = '';
+            questionArea.style.display = 'none';
+            questionInput.value = '';
+        }
+
+        document.querySelector('.modal-close-btn').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('.summarize-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const slide = e.target.closest('.slide');
+                const content = slide.dataset.content;
+                const prompt = `Please provide a concise summary of the following content from an academic presentation slide:\n\n---\n${content}\n---`;
+                modalTitle.innerText = "Slide Summary";
+                questionArea.style.display = 'none';
+                openModal();
+                callGeminiAPI(prompt);
+            });
+        });
+
+        document.querySelectorAll('.ask-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                modalTitle.innerText = "Ask a Question";
+                responseDiv.innerHTML = '';
+                questionArea.style.display = 'flex';
+                openModal();
+            });
+        });
+
+        submitQuestionBtn.addEventListener('click', () => {
+            const activeSlide = document.querySelector('.slide.active');
+            const context = activeSlide.dataset.content;
+            const question = questionInput.value;
+
+            if (!question.trim()) {
+                alert("Please enter a question.");
+                return;
+            }
+
+            const prompt = `Based on the following context from a presentation slide, please answer the user's question.\n\nCONTEXT:\n---\n${context}\n---\n\nQUESTION:\n${question}`;
+            
+            questionArea.style.display = 'none';
+            callGeminiAPI(prompt);
+        });
+
+    </script>
+</body>
+</html>
