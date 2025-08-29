@@ -63,95 +63,6 @@
         a:hover { text-decoration: underline; }
         .lang-greek { font-family: 'Noto Serif GR', serif; font-size: 1.2em; }
         .lang-chinese { font-family: 'Noto Serif SC', serif; font-size: 1.3em; }
-
-        /* Gemini API Features Styles */
-        .gemini-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        .gemini-controls button {
-            background-color: #4a4a4a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 12px;
-            cursor: pointer;
-            font-family: var(--font-main);
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-        .gemini-controls button:hover {
-            background-color: #6a6a6a;
-        }
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s 0.3s, opacity 0.3s;
-        }
-        .modal-overlay.visible {
-            visibility: visible;
-            opacity: 1;
-            transition: visibility 0s, opacity 0.3s;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 700px;
-            max-height: 80vh;
-            overflow-y: auto;
-            text-align: left;
-            position: relative;
-        }
-        .modal-content h3 {
-            margin-top: 0;
-            font-family: var(--font-serif);
-            color: var(--color-primary);
-        }
-        .modal-content #gemini-response {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            white-space: pre-wrap;
-        }
-        #gemini-question-area { display: flex; flex-direction: column; gap: 10px; }
-        #gemini-question-input { width: 100%; padding: 10px; font-family: var(--font-main); font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; }
-        .modal-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--color-secondary);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -166,10 +77,6 @@
                 <h4 style="margin: 0;"><a href="https://magisterha.github.io/Presentacion290825/" target="_blank" style="color:white;">magisterha.github.io/Presentacion290825/</a></h4>
                 <p style="font-size: 1rem; color: #ddd; margin: 5px 0 0 0;">Scan for online version</p>
             </div>
-        </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
         </div>
     </div>
 
@@ -188,14 +95,10 @@
                 <p style="font-size: 1.2rem;">These are the specific arguments an audience accepts, revealing the <em>reaction</em> to that cognitive interaction.</p>
             </div>
         </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
 
     <!-- Slide 3: Rationale for Comparison -->
-    <div class="slide" data-content="The Rationale for Comparison: It is pertinent to seek functional endoxa in Aristotle's Rhetoric and the Zhanguo Ce because both texts were conceived for circumstances lacking clear guidance for decision-making. This includes the absence of a logos sustained by strong axioms in Greece, and the decline of the strong ritual order of the 周 (Zhou) dynasty in China.">
+    <div class="slide" data-content="The Rationale for Comparison: It is pertinent to seek functional endoxa in Aristotle's Rhetoric and the Zhanguo Ce because both texts were conceived for circumstances lacking clear guidance for decision-making. This includes the absence of a logos sustained by strong axioms in Greece, and the decline of the rigid ritual order of the 周 (Zhou) dynasty in China.">
         <h2>The Rationale for Comparison</h2>
         <p>Why seek functional endoxa in Aristotle's <em>Rhetoric</em> and the <em>Zhànguó Cè</em>?</p>
         <p>Both texts were conceived for circumstances lacking clear guidance for decision-making, in the absence of:</p>
@@ -205,13 +108,9 @@
                 <p style="font-size: 1rem; color: #666;">(Greece)</p>
             </div>
             <div>
-                <p>A strong ritual order like that of the 周 (Zhou) dynasty.</p>
+                <p>A rigid ritual order like that of the 周 (Zhou) dynasty.</p>
                 <p style="font-size: 1rem; color: #666;">(China)</p>
             </div>
-        </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
         </div>
     </div>
 
@@ -232,10 +131,6 @@
                 <p>Commonly held beliefs and communal values. The foundational premise of all effective argumentation.</p>
             </div>
         </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
 
     <!-- Slide 5: China -->
@@ -252,10 +147,6 @@
                 <p>The decline of the Ritual system (禮) necessitated a new praxis. Language is consequently employed as an instrument to secure practical advantage (實).</p>
             </div>
         </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
     
     <!-- Slide 6: Cognition -->
@@ -271,10 +162,6 @@
                 <p>Deliberative, Logical, Effortful<br>➡️ Logos, 權 (quán)</p>
             </div>
         </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
 
     <!-- Slide 7: Emotion -->
@@ -282,10 +169,6 @@
         <h2>Emotion as the Catalyst for Judgment</h2>
         <p><strong>Aristotle (Text III):</strong> <em>Pathos</em> (emotion) determines <em>krisis</em> (judgment). <a href="https://magisterha.github.io/Pathosykriseis/" target="_blank">↗</a></p>
         <p><strong>鬼谷子 (Guǐgǔzi) (Text IV):</strong> The skilled orator must investigate 情 (<em>qíng</em>) and 權 (<em>quán</em>). <a href="https://magisterha.github.io/ChuaiqingGuiGuzi/" target="_blank">↗</a></p>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
     
     <!-- Slide 8: Case I -->
@@ -302,30 +185,18 @@
                 <p>Emphasis on <strong>名 (míng):</strong> honor and reputation. An assault on the nominal sovereign confers great prestige.</p>
             </div>
         </div>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
     
     <!-- Slide 9: Case II -->
     <div class="slide" data-content="Case Study II: Contested Loyalty (忠). Dispute of 陳珍 (Text VII): Is being 忠 (zhōng) about telling the uncomfortable truth or maintaining harmony?">
         <h2>Case Study II: Contested Loyalty (忠)</h2>
         <p>The dispute of 陳珍, who must defend his loyalty (忠) against the accusations of 張儀. <a href="https://magisterha.github.io/ChenzhenyZhanyi/" target="_blank">Read dispute ↗</a></p>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
 
     <!-- Slide 10: Thank You -->
     <div class="slide lead" data-content="Thank you slide. Questions and Discussion.">
         <h1>Thank You</h1>
         <h3>Questions & Discussion</h3>
-        <div class="gemini-controls">
-            <button class="summarize-btn">Summarize Slide</button>
-            <button class="ask-btn">Ask a Question</button>
-        </div>
     </div>
 
     <!-- Controls and counter -->
@@ -334,22 +205,6 @@
         <button id="nextBtn">►</button>
     </div>
     <div id="slideCounter" class="slide-counter"></div>
-
-    <!-- Gemini Modal -->
-    <div id="gemini-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close-btn">&times;</button>
-            <h3 id="gemini-modal-title">Gemini Assistant</h3>
-            <div id="gemini-question-area" style="display: none;">
-                <p>Ask a question about this slide:</p>
-                <textarea id="gemini-question-input" rows="3"></textarea>
-                <button id="gemini-submit-btn">Submit Question</button>
-            </div>
-            <div id="gemini-response-area">
-                 <div id="gemini-response"></div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Script for slide navigation
@@ -396,105 +251,6 @@
         });
 
         updateSlides();
-
-        // Gemini API Functionality
-        const modal = document.getElementById('gemini-modal');
-        const modalTitle = document.getElementById('gemini-modal-title');
-        const responseDiv = document.getElementById('gemini-response');
-        const questionArea = document.getElementById('gemini-question-area');
-        const questionInput = document.getElementById('gemini-question-input');
-        const submitQuestionBtn = document.getElementById('gemini-submit-btn');
-
-        const apiKey = ""; // API key is handled by the environment
-
-        async function callGeminiAPI(prompt) {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-            
-            responseDiv.innerHTML = '<div class="loader"></div>';
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-
-                const result = await response.json();
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                
-                if (text) {
-                    responseDiv.innerText = text;
-                } else {
-                    responseDiv.innerText = "Sorry, I couldn't get a response. The response from the model was empty.";
-                }
-
-            } catch (error) {
-                console.error("Gemini API call failed:", error);
-                responseDiv.innerText = "An error occurred while contacting the AI assistant. Please check the console for details.";
-            }
-        }
-
-        function openModal() {
-            modal.classList.add('visible');
-        }
-
-        function closeModal() {
-            modal.classList.remove('visible');
-            responseDiv.innerHTML = '';
-            questionArea.style.display = 'none';
-            questionInput.value = '';
-        }
-
-        document.querySelector('.modal-close-btn').addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        document.querySelectorAll('.summarize-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const slide = e.target.closest('.slide');
-                const content = slide.dataset.content;
-                const prompt = `Please provide a concise summary of the following content from an academic presentation slide:\n\n---\n${content}\n---`;
-                modalTitle.innerText = "Slide Summary";
-                questionArea.style.display = 'none';
-                openModal();
-                callGeminiAPI(prompt);
-            });
-        });
-
-        document.querySelectorAll('.ask-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                modalTitle.innerText = "Ask a Question";
-                responseDiv.innerHTML = '';
-                questionArea.style.display = 'flex';
-                openModal();
-            });
-        });
-
-        submitQuestionBtn.addEventListener('click', () => {
-            const activeSlide = document.querySelector('.slide.active');
-            const context = activeSlide.dataset.content;
-            const question = questionInput.value;
-
-            if (!question.trim()) {
-                alert("Please enter a question.");
-                return;
-            }
-
-            const prompt = `Based on the following context from a presentation slide, please answer the user's question.\n\nCONTEXT:\n---\n${context}\n---\n\nQUESTION:\n${question}`;
-            
-            questionArea.style.display = 'none';
-            callGeminiAPI(prompt);
-        });
-
     </script>
 </body>
 </html>
