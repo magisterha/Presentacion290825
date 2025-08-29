@@ -8,7 +8,7 @@
     <style>
         /* General Styles */
         :root {
-            --font-main: 'Inter', 'Segoe UI', Candara, 'Bitstream Vera Sans', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif;
+            --font-main: 'Inter', 'Segoe UI', Candara, 'Bitstream Vera Sans', 'DejaVu Sans', 'Trechet MS', Verdana, sans-serif;
             --font-serif: 'Cormorant Garamond', 'Noto Serif GR', 'Noto Serif SC', serif;
             --color-primary: #2c3e50; /* Classic dark blue */
             --color-secondary: #34495e; /* Slightly lighter blue */
@@ -48,7 +48,7 @@
         h3, h4 { font-family: var(--font-main); color: var(--color-text); font-size: clamp(1.2rem, 3vw, 1.8rem); }
         p, li { font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.7; color: var(--color-text); max-width: 900px; }
         .lead { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color: white; }
-        .lead h1, .lead h3, .lead h4 { color: white; }
+        .lead h1, .lead h3, .lead h4, .lead p { color: white; }
         .invert { background-color: #222; color: white; }
         .invert h2, .invert p, .invert a { color: white; }
         .two-columns { display: grid; grid-template-columns: 1fr; gap: 2rem; width: 90%; text-align: left; align-items: center; }
@@ -157,33 +157,58 @@
 <body>
 
     <!-- Slide 1: Title -->
-    <div class="slide active lead" data-content="Title Slide: Analogues of Aristotelian Rhetoric—Ethos, Logos, and Pathos in the Zhanguo Ce. By Javier Caramés Sánchez, Independent Online Lecturer / NTU.">
+    <div class="slide active lead" data-content="Title Slide: Analogues of Aristotelian Rhetoric—Ethos, Logos, and Pathos in the Zhanguo Ce. By Javier Caramés Sánchez, Independent Online Lecturer / NTU. Includes a QR code for the online presentation.">
         <h1>Analogues of Aristotelian Rhetoric—<br>Ethos, Logos, and Pathos in the <em>Zhanguo Ce</em></h1>
         <h4>Javier Caramés Sánchez<br>Independent Online Lecturer / NTU</h4>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px; margin-top: 30px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://magisterha.github.io/Presentacion290825/" alt="QR Code for Presentation Link" style="border: 5px solid white; border-radius: 8px;">
+            <div style="text-align: left;">
+                <h4 style="margin: 0;"><a href="https://magisterha.github.io/Presentacion290825/" target="_blank" style="color:white;">magisterha.github.io/Presentacion290825/</a></h4>
+                <p style="font-size: 1rem; color: #ddd; margin: 5px 0 0 0;">Scan for online version</p>
+            </div>
+        </div>
         <div class="gemini-controls">
             <button class="summarize-btn">Summarize Slide</button>
             <button class="ask-btn">Ask a Question</button>
         </div>
     </div>
 
-    <!-- Slide 2: Purpose -->
-    <div class="slide" data-content="Central Inquiry: This presentation investigates the common cognitive principles underlying the genesis of rhetorical theory in Classical Greece and Warring States China.">
-        <h2>Central Inquiry</h2>
-        <p>This presentation investigates the common cognitive principles underlying the genesis of rhetorical theory in Classical Greece and Warring States China.</p>
+    <!-- Slide 2: Methodological Problem -->
+    <div class="slide" data-content="The Methodological Problem: Cognitive phenomena are not directly perceptible. The challenge is accessing these internal processes. The proposed solution is analyzing endoxa (commonly accepted truths). We distinguish two types: Functional Endoxa, which reveal the conceptual framework of persuasion and the interaction between cognitive systems, and Substantive Endoxa, which are the specific arguments that show the outcome of that interaction.">
+        <h2>The Methodological Problem</h2>
+        <p>Cognitive phenomena are not directly perceptible. How, then, can we analyze the internal processes of persuasion?</p>
+        <p>The proposed solution is the analysis of <strong>endoxa</strong>: the volatile, imprecise, and diffuse truths a community holds.</p>
+        <div class="two-columns" style="margin-top: 2rem; max-width: 1000px; text-align: left;">
+            <div style="padding: 1rem; border-left: 3px solid var(--color-secondary);">
+                <h3 style="font-family: var(--font-serif); color: var(--color-secondary);">Functional Endoxa</h3>
+                <p style="font-size: 1.2rem;">These reveal <em>how persuasion is conceived</em>, offering vestiges of the interaction between the two cognitive systems.</p>
+            </div>
+            <div style="padding: 1rem; border-left: 3px solid #27ae60;">
+                <h3 style="font-family: var(--font-serif); color: #27ae60;">Substantive Endoxa</h3>
+                <p style="font-size: 1.2rem;">These are the specific arguments an audience accepts, revealing the <em>reaction</em> to that cognitive interaction.</p>
+            </div>
+        </div>
         <div class="gemini-controls">
             <button class="summarize-btn">Summarize Slide</button>
             <button class="ask-btn">Ask a Question</button>
         </div>
     </div>
 
-    <!-- Slide 3: Methodology -->
-    <div class="slide" data-content="Methodological Framework: The approach uses Comparative Philology for textual analysis, considers the Historical Context linking text to its era, and applies Cognitive Science, specifically the System 1 (fast, intuitive) and System 2 (slow, deliberative) framework.">
-        <h2>Methodological Framework</h2>
-        <ul style="list-style: none; padding: 0; text-align: center;">
-            <li style="margin-bottom: 1rem;"><strong>Comparative Philology:</strong> Textual analysis of primary sources.</li>
-            <li style="margin-bottom: 1rem;"><strong>Historical Context:</strong> Linking text to its era.</li>
-            <li><strong>Cognitive Science:</strong> A common explanatory framework (System 1 & 2).</li>
-        </ul>
+    <!-- Slide 3: Rationale for Comparison -->
+    <div class="slide" data-content="The Rationale for Comparison: It is pertinent to seek functional endoxa in Aristotle's Rhetoric and the Zhanguo Ce because both texts were conceived for circumstances lacking clear guidance for decision-making. This includes the absence of a logos sustained by strong axioms in Greece, and the decline of the rigid ritual order of the 周 (Zhou) dynasty in China.">
+        <h2>The Rationale for Comparison</h2>
+        <p>Why seek functional endoxa in Aristotle's <em>Rhetoric</em> and the <em>Zhànguó Cè</em>?</p>
+        <p>Both texts were conceived for circumstances lacking clear guidance for decision-making, in the absence of:</p>
+        <div class="two-columns" style="margin-top: 2rem; max-width: 1000px; text-align: center;">
+            <div>
+                <p>A <em>logos</em> sustained by strong, unwavering axioms.</p>
+                <p style="font-size: 1rem; color: #666;">(Greece)</p>
+            </div>
+            <div>
+                <p>A rigid ritual order like that of the 周 (Zhou) dynasty.</p>
+                <p style="font-size: 1rem; color: #666;">(China)</p>
+            </div>
+        </div>
         <div class="gemini-controls">
             <button class="summarize-btn">Summarize Slide</button>
             <button class="ask-btn">Ask a Question</button>
@@ -263,7 +288,60 @@
         </div>
     </div>
 
-    <!-- Other slides would follow the same pattern -->
+    <!-- Slide 8: Quán -->
+    <div class="slide" data-content="權 (Quán): Transcending Normative Action. Mencius (Text V): To save a drowning sister-in-law, while violating ritual propriety, constitutes the correct ethical action. Cognitive analysis: An anomalous situation compels System 2 (deliberative reason) to override the normative, automatic response of System 1.">
+        <h2>權 (Quán): Transcending Normative Action</h2>
+        <p><strong>Mencius (Text V):</strong> To save a drowning sister-in-law, while violating ritual propriety, constitutes the correct ethical action.</p>
+        <p><a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">Analyze the text ↗</a></p>
+        <p style="background-color: #f4f6f7; padding: 15px; border-radius: 8px; max-width: 800px;"><strong>Cognitive analysis:</strong> An anomalous situation compels System 2 (deliberative reason) to override the normative, automatic response of System 1.</p>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+    
+    <!-- Slide 9: Case I -->
+    <div class="slide" data-content="Case Study I: A Debate on Strategic Ends. The deliberation between 司馬錯 and 張儀. Sīmǎ Cuò's position emphasizes 實 (shí): practical benefit. Zhāng Yí's position emphasizes 名 (míng): honor and reputation.">
+        <h2>Case Study I: A Debate on Strategic Ends</h2>
+        <p>The deliberation between 司馬錯 and 張儀. <a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">Read debate ↗</a></p>
+        <div class="two-columns">
+            <div style="border: 2px solid #c0392b; padding: 10px; border-radius: 5px;">
+                <h3>The Position of Sīmǎ Cuò</h3>
+                <p>Emphasis on <strong>實 (shí):</strong> practical benefit. The conquest of Shǔ offers material advantage with minimal resistance.</p>
+            </div>
+            <div style="border: 2px solid #2980b9; padding: 10px; border-radius: 5px;">
+                <h3>The Position of Zhāng Yí</h3>
+                <p>Emphasis on <strong>名 (míng):</strong> honor and reputation. An assault on the nominal sovereign confers great prestige.</p>
+            </div>
+        </div>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+    
+    <!-- Slide 10: Case II -->
+    <div class="slide" data-content="Case Study II: Contested Virtues—Loyalty (忠) and Ethos. Dispute of 陳珍 (Text VII): Is being 忠 (zhōng) about telling the uncomfortable truth or maintaining harmony? Dispute of 韓非子 (Text VIII): Ethos does not reside in character, but in the position of power (勢 shì).">
+        <h2>Case Study II: Contested Virtues—Loyalty (忠) and Ethos</h2>
+        <p><strong>Dispute of 陳珍 (Text VII):</strong> Is being 忠 (zhōng) about telling the uncomfortable truth or maintaining harmony? <a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">↗</a></p>
+        <p><strong>Dispute of 韓非子 (Text VIII):</strong> <em>Ethos</em> does not reside in character, but in the position of power (勢 shì). <a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">↗</a></p>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
+
+    <!-- Slide 11: Case III -->
+    <div class="slide" data-content="Case Study III: The Art of Emotional Appeal. The rivalry between 蘇秦 and 張儀 exemplifies the strategic application of pathos. Their method involved identifying and exploiting the latent emotions of rulers—such as fear, greed, or vanity—to achieve persuasive ends.">
+        <h2>Case Study III: The Art of Emotional Appeal</h2>
+        <p>The rivalry between 蘇秦 and 張儀 exemplifies the strategic application of <em>pathos</em>.</p>
+        <p>Their method involved identifying and exploiting the latent emotions of rulers—such as fear, greed, or vanity—to achieve persuasive ends.</p>
+        <p><a href="#" onclick="event.preventDefault(); alert('This link will work in the final repository.');">See examples ↗</a></p>
+        <div class="gemini-controls">
+            <button class="summarize-btn">Summarize Slide</button>
+            <button class="ask-btn">Ask a Question</button>
+        </div>
+    </div>
 
     <!-- Slide 12: Conclusion -->
     <div class="slide invert" data-content="Conclusion: Endoxa as Catalysts for Pathos. The rhetorical process is summarized as follows: The Orator identifies an Endoxon or communal value (like Honor or Benefit), then employs language to evoke a specific Emotion (Pathos or 情), which in turn compels a Judgment or decision (Krisis).">
@@ -278,11 +356,9 @@
     </div>
 
     <!-- Slide 13: Thank You -->
-    <div class="slide lead" data-content="Thank you slide. Questions and Discussion. Contact: your.email@domain.com. Link to repository.">
+    <div class="slide lead" data-content="Thank you slide. Questions and Discussion.">
         <h1>Thank You</h1>
         <h3>Questions & Discussion</h3>
-        <h4>📧 your.email@domain.com</h4>
-        <h4><a href="https://github.com/your-username/presentation-repo" target="_blank" style="color:white;" onclick="event.preventDefault(); alert('This link will work in the final repository.');">github.com/your-username/presentation-repo</a></h4>
         <div class="gemini-controls">
             <button class="summarize-btn">Summarize Slide</button>
             <button class="ask-btn">Ask a Question</button>
